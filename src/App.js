@@ -1,19 +1,44 @@
-import './App.css';
-function WhoAmI(props) {
-  return (
-    <div>
-      <h1>My name is {props.name}, surname - {props.surname}</h1>
-      <a href={props.link}>My profile</a>
-    </div>
-  )
+import { Component} from 'react'
+import './App.css'
+class WhoAmI extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      age: 22, 
+      text: '+++'
+    }
+  }
+  yearPlusAsync = () => {
+    this.setState({
+      age: this.state.age + 1 //! async - for optimization
+    })
+  }
+  yearPlus = () => {
+    this.setState(state => ({
+      age: state.age + 1 //! sync - NOT optimization, return replaced by ()
+    }))
+  }
+  render() {
+    const { name, surname, link } = this.props
+    return (
+      <div>
+        <h1>My name is {name}, surname - {surname}, age - {this.state.age}</h1>
+        <a href={link}>My profile</a>
+        <button onClick={this.yearPlus}>{this.state.text}</button>
+      </div>
+    )
+  }
 }
-function WhoAreYou({name, surname, link}) {
-  return (
-    <div>
-      <h1>My name is {name}, surname - {surname}</h1>
-      <a href={link}>My profile</a>
-    </div>
-  )
+class WhoAreYou extends Component {
+  render() {
+    const { name, surname, link } = this.props
+    return (
+      <div>
+        <h1>My name is {name}, surname - {surname}</h1>
+        <a href={link}>My profile</a>
+      </div>
+    )
+  }
 }
 function WhoAreObj({name, surname, link}) {
   return (
@@ -46,4 +71,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

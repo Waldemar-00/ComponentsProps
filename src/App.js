@@ -5,26 +5,39 @@ class WhoAmI extends Component {
     super(props)
     this.state = {
       age: 22, 
-      text: '+++'
+      text: '+++',
+      position: ''
     }
+    this.yearPlus = this.yearPlus.bind(this)
   }
-  yearPlusAsync = () => {
+  yearPlusAsync () {
     this.setState({
       age: this.state.age + 1 //! async - for optimization
     })
   }
-  yearPlus = () => {
+  yearPlus () {
     this.setState(state => ({
       age: state.age + 1 //! sync - NOT optimization, return replaced by ()
     }))
   }
+  inputChanges = (e, message) => {
+    console.log(message)
+    this.setState({
+      position: e.target.value
+    })
+  }
   render() {
     const { name, surname, link } = this.props
+    const {age, position} = this.state
     return (
       <div>
-        <h1>My name is {name}, surname - {surname}, age - {this.state.age}</h1>
+        <h1>My name is {name}, surname - {surname}, age - {age}, position - {position}</h1>
         <a href={link}>My profile</a>
-        <button onClick={this.yearPlus}>{this.state.text}</button>
+        <button onClick={() => this.yearPlusAsync() }>{this.state.text}</button>
+        <form >
+          <label htmlFor="input">Write a position</label>
+          <input type="text" id='input' onChange={(e) => this.inputChanges(e, 'Change - Yes')} /> {/*onChange or onInput*/}
+        </form>
       </div>
     )
   }

@@ -1,4 +1,4 @@
-import { Component} from 'react'
+import { Component, Fragment } from 'react'
 import './App.css'
 class WhoAmI extends Component {
   constructor (props) {
@@ -30,7 +30,7 @@ class WhoAmI extends Component {
     const { name, surname, link } = this.props
     const {age, position} = this.state
     return (
-      <div>
+      <Fragment>
         <h1>My name is {name}, surname - {surname}, age - {age}, position - {position}</h1>
         <a href={link}>My profile</a>
         <button onClick={() => this.yearPlusAsync() }>{this.state.text}</button>
@@ -38,7 +38,7 @@ class WhoAmI extends Component {
           <label htmlFor="input">Write a position</label>
           <input type="text" id='input' onChange={(e) => this.inputChanges(e, 'Change - Yes')} /> {/*onChange or onInput*/}
         </form>
-      </div>
+      </Fragment>
     )
   }
 }
@@ -46,27 +46,27 @@ class WhoAreYou extends Component {
   render() {
     const { name, surname, link } = this.props
     return (
-      <div>
+      <Fragment>
         <h1>My name is {name}, surname - {surname}</h1>
         <a href={link}>My profile</a>
-      </div>
+      </Fragment>
     )
   }
 }
 function WhoAreObj({name, surname, link}) {
   return (
-    <div>
+    <>
       <h1>My name is {name.firstName}, surname - {surname}</h1>
       <a href={link}>My profile</a>
-    </div>
+    </>
   )
 }
 function WhoAreFunct({name, surname, link}) {
   return (
-    <div>
+    <>
       <h1>My name is {name()}, surname - {surname}</h1>
       <a href={link}>My profile</a>
-    </div>
+    </>
   )
 }
 function App() {

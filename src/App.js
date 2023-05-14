@@ -6,7 +6,20 @@ const EmployeeItem = styled.div`
   padding: 20px;
   margin-bottom: 15px;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15)
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+  a {
+    display: block;
+    margin: 10px 0;
+    color: ${props => props.active ? 'orange' : '#F701F7'};
+    text-decoration: none;
+  }
+  input {
+    display: block;
+    margin: 10px auto 10px auto; 
+  }
+  label {
+    color: red;
+  }
 `
 const H2 = styled.h2`
   font-size: 22px;
@@ -48,7 +61,7 @@ class WhoAmI extends Component {
     const { name, surname, link } = this.props
     const {age, position} = this.state
     return (
-      <EmployeeItem>
+      <EmployeeItem active>
         <H2>My name is {name}, surname - {surname}, age - {age}, position - {position}</H2>
         <a href={link}>My profile</a>
         <Button onClick={() => this.yearPlusAsync() }>{this.state.text}</Button>

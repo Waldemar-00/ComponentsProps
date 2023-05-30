@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import './App.css'
+import BootStrapTest from './bootStarpTest'
 
 const EmployeeItem = styled.div`
   padding: 20px;
@@ -107,14 +108,14 @@ const Wrapper = styled.main`
 `
 const DynamicGreating = (props) => {
   return (
-    <div className={'mb-3 p-30 border border-' + props.color}>
+    <div className={`${props.mb} ${props.mt} p-30 border border-` + props.color}>
       {props.children}
     </div>
   )
 }
 const DynamicChildren = (props) => {
   return (
-    <div className={'mb-3 p-30 border border-' + props.color}>
+    <div className={`${props.mb} ${props.mt} p-30 border border-` + props.color}>
       {
         React.Children.map(props.children, (child) => {
           return React.cloneElement(child, {className: `shadow p-3 m-3 border ${props.rounded}`})
@@ -126,20 +127,24 @@ const DynamicChildren = (props) => {
 function App() {
   return (
     <Wrapper>
-      <DynamicGreating color={'primary'}>
+      <DynamicGreating color={'primary'} mb={'mb-3'}>
         <h2>Hello JS</h2>
         <h2>Hello React</h2>
       </DynamicGreating>
       <DynamicChildren
         color={'primary'}
-        rounded={'rounded'}>
+        rounded={'rounded'}
+        mb={'mb-3'}
+      >
         <p>Children lets you manipulate and transform the JSX you received as the children prop.</p>
         <p>Children.map(children, fn, thisArg?)</p>
         <p>Children.forEach(children, fn, thisArg?)</p>
       </DynamicChildren>
       <DynamicChildren
         color={'primary'}
-        rounded={''}>
+        rounded={''}
+        mb={'mb-3'}
+      >
         <p>React.Children.map(props.children, (child))</p>
         <p>React.cloneElement(child, "className: 'shadow p-3 m-3 border rounded'")</p>
         <p>Children.forEach(children, fn, thisArg?)</p>
@@ -152,6 +157,26 @@ function App() {
       <WhoAreObj name={{ firstName: 'Alex' }} surname='Freeman' link='facebook.com/alexfreeman' />
       <WhoAreFunct name={() =>{ return 'Pavel' }} surname='Kulesh' link='facebook.com/pavelkulesh' />
       <WhoAreFunct name={() => { return 'Alex' }} surname='Freeman' link='facebook.com/alexfreeman' />
+      <BootStrapTest
+        left={
+          <DynamicGreating color={'primary'} mb={'mb-3'} mt={'mt-5'}>
+            <h2>Hello JS</h2>
+            <h2>Hello React</h2>
+          </DynamicGreating>
+        }
+        right={
+          <DynamicChildren
+            color={'primary'}
+            rounded={'rounded'}
+            mb={'mb-3'}
+            mt={'mt-5'}
+          >
+            <p>Children lets you manipulate and transform the JSX you received as the children prop.</p>
+            <p>Children.map(children, fn, thisArg?)</p>
+            <p>Children.forEach(children, fn, thisArg?)</p>
+          </DynamicChildren>
+        }
+      />
     </Wrapper>
   );
 }

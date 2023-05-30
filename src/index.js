@@ -5,7 +5,6 @@ import App from './App'
 import styled from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from './App'
-import BootStrapTest from './bootStarpTest'
 
 const RedBigButton = styled(Button)`
   margin: 20px auto;
@@ -20,6 +19,5 @@ root.render(
   <React.StrictMode>
     <App />
     <RedBigButton as='a' href='https://github.com'>Send report</RedBigButton>
-    <BootStrapTest />
   </React.StrictMode>
 )

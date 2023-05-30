@@ -1,5 +1,5 @@
 import { Container, Row, Col, Carousel, Form, Button } from 'react-bootstrap' 
-const BootStrapTest = () => {
+const BootStrapTest = (props) => {
   return (
     <Container className="mt-5 mb-5">
       <Row>
@@ -60,6 +60,14 @@ const BootStrapTest = () => {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {props.left}
+        </Col>
+        <Col>
+          {props.right}
         </Col>
       </Row>
     </Container>

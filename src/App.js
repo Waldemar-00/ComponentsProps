@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import './App.css'
 
@@ -112,6 +112,17 @@ const DynamicGreating = (props) => {
     </div>
   )
 }
+const DynamicChildren = (props) => {
+  return (
+    <div className={'mb-3 p-30 border border-' + props.color}>
+      {
+        React.Children.map(props.children, (child) => {
+          return React.cloneElement(child, {className: `shadow p-3 m-3 border ${props.rounded}`})
+        })
+      }
+    </div>
+  )
+}
 function App() {
   return (
     <Wrapper>
@@ -119,11 +130,20 @@ function App() {
         <h2>Hello JS</h2>
         <h2>Hello React</h2>
       </DynamicGreating>
-      <DynamicGreating color={'primary'}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi repudiandae repellendus error adipisci nostrum iste tenetur non? Enim alias ad explicabo. Praesentium voluptatum unde alias sit at, fuga doloremque libero.
-        Cupiditate, est temporibus distinctio iusto voluptatibus dignissimos consequuntur mollitia molestias eveniet dolorum nesciunt neque voluptatem animi, obcaecati error in. Totam, eos? Praesentium vel tenetur corporis autem, cumque laboriosam consequuntur qui?
-        Cupiditate dolores ut corporis. Nulla, placeat rem mollitia, recusandae assumenda molestiae quas soluta adipisci natus consequuntur quibusdam exercitationem nostrum tempora voluptatibus neque accusamus magni quidem illo. Assumenda deleniti aut explicabo!</p>
-      </DynamicGreating>
+      <DynamicChildren
+        color={'primary'}
+        rounded={'rounded'}>
+        <p>Children lets you manipulate and transform the JSX you received as the children prop.</p>
+        <p>Children.map(children, fn, thisArg?)</p>
+        <p>Children.forEach(children, fn, thisArg?)</p>
+      </DynamicChildren>
+      <DynamicChildren
+        color={'primary'}
+        rounded={''}>
+        <p>React.Children.map(props.children, (child))</p>
+        <p>React.cloneElement(child, "className: 'shadow p-3 m-3 border rounded'")</p>
+        <p>Children.forEach(children, fn, thisArg?)</p>
+      </DynamicChildren>
       <WhoAmI name='Pavel' surname='Kulesh' link='facebook.com/pavelkulesh' />
       <WhoAmI name='Alex' surname='Freeman' link='facebook.com/alexfreeman' />
       <WhoAreYou name='Pavel' surname='Kulesh' link='facebook.com/pavelkulesh' />

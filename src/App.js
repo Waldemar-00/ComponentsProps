@@ -105,9 +105,25 @@ const Wrapper = styled.main`
   margin: 80px auto 0 auto;
   text-align: center;
 `
+const DynamicGreating = (props) => {
+  return (
+    <div className={'mb-3 p-30 border border-' + props.color}>
+      {props.children}
+    </div>
+  )
+}
 function App() {
   return (
     <Wrapper>
+      <DynamicGreating color={'primary'}>
+        <h2>Hello JS</h2>
+        <h2>Hello React</h2>
+      </DynamicGreating>
+      <DynamicGreating color={'primary'}>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi repudiandae repellendus error adipisci nostrum iste tenetur non? Enim alias ad explicabo. Praesentium voluptatum unde alias sit at, fuga doloremque libero.
+        Cupiditate, est temporibus distinctio iusto voluptatibus dignissimos consequuntur mollitia molestias eveniet dolorum nesciunt neque voluptatem animi, obcaecati error in. Totam, eos? Praesentium vel tenetur corporis autem, cumque laboriosam consequuntur qui?
+        Cupiditate dolores ut corporis. Nulla, placeat rem mollitia, recusandae assumenda molestiae quas soluta adipisci natus consequuntur quibusdam exercitationem nostrum tempora voluptatibus neque accusamus magni quidem illo. Assumenda deleniti aut explicabo!</p>
+      </DynamicGreating>
       <WhoAmI name='Pavel' surname='Kulesh' link='facebook.com/pavelkulesh' />
       <WhoAmI name='Alex' surname='Freeman' link='facebook.com/alexfreeman' />
       <WhoAreYou name='Pavel' surname='Kulesh' link='facebook.com/pavelkulesh' />

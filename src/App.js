@@ -124,9 +124,19 @@ const DynamicChildren = (props) => {
     </div>
   )
 }
+const HelloGreating = () => {
+  return (
+    <div style={{ width: '600px', margin: '0 auto'}}>
+    <DynamicGreating color={'primary'} mb={'mb-3'} mt={'mt-5'}>
+      <h2>Hello React!</h2>
+      </DynamicGreating>
+    </div>
+  )
+}
 function App() {
   return (
     <Wrapper>
+      <HelloGreating/>
       <DynamicGreating color={'primary'} mb={'mb-3'}>
         <h2>Hello JS</h2>
         <h2>Hello React</h2>

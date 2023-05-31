@@ -133,10 +133,40 @@ const HelloGreating = () => {
     </div>
   )
 }
+const Message = (props) => {
+  return (
+    <h2>Hello Hero, number {props.counter} !</h2>
+  )
+}
+class Counter extends Component {
+  state = {
+    counter: 0
+  }
+  changeCounter = () => {
+    this.setState(({ counter }) => ({
+      counter: counter + 1
+    }))
+  }
+  render() {
+    return (
+      <>
+        {this.props.render(this.state.counter)}
+        <button
+          className={'btn btn-primary'}
+          onClick={this.changeCounter}>
+          Click me!
+        </button>
+      </>
+    )
+  }
+}
 function App() {
   return (
     <Wrapper>
-      <HelloGreating/>
+      <Counter render={counter => (
+        <Message counter={counter}/>
+        )}/>
+      <HelloGreating />
       <DynamicGreating color={'primary'} mb={'mb-3'}>
         <h2>Hello JS</h2>
         <h2>Hello React</h2>
